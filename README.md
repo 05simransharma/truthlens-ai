@@ -160,6 +160,17 @@ The application will launch in your browser.
 
 ---
 
+## Application UI
+
+### Home Page
+![Home Page](assets/Homepage.png)
+
+### Contract Analysis
+![Contract Analyzer](assets/ContractAnalysis.png)
+
+### News Analysis
+![News Analyzer](assets/NewsAnalysis.png)
+
 ## Future Enhancements
 
 * Real-time web fact-checking
