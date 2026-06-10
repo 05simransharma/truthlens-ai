@@ -22,4 +22,3 @@ Input Processing
       Results Dashboard
 .
 .
-.
