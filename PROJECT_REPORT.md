@@ -235,7 +235,7 @@ The project establishes a strong foundation for future development into a compre
 # Team Members
 
 * Simran Sharma
-* [Team Member Name]
+* Kishor Chary
 
 ---
 
