@@ -18,7 +18,7 @@ Technologies Used
 
 Results
 
-Challenges Faced
+Challenges occured
 
 Future Enhancements
 
