@@ -2,40 +2,24 @@
 
 Thank you for your interest in contributing to TruthLens AI.
 
-This document provides guidelines for contributing to the project.
+This project was developed as part of a hackathon and demonstrates the use of Generative AI for contract risk analysis and news credibility assessment.
 
 ---
 
-# Code of Conduct
+## How to Contribute
 
-Contributors are expected to:
+### 1. Fork the Repository
 
-* Be respectful and professional.
-* Provide constructive feedback.
-* Collaborate openly and responsibly.
-* Follow project standards and guidelines.
+Create a personal copy of the repository on your Git platform.
 
----
-
-# Getting Started
-
-## 1. Fork the Repository
-
-Create your own copy of the repository.
+### 2. Clone the Repository
 
 ```bash
 git clone <repository-url>
-```
-
-Navigate to the project directory:
-
-```bash
 cd truthlens-ai
 ```
 
----
-
-## 2. Install Dependencies
+### 3. Install Dependencies
 
 Using uv:
 
@@ -43,163 +27,100 @@ Using uv:
 uv sync
 ```
 
-Or using pip:
+### 4. Create a Feature Branch
 
 ```bash
-pip install -r requirements.txt
+git checkout -b feature/your-feature-name
 ```
 
----
+### 5. Make Changes
 
-## 3. Configure Environment Variables
+Implement your feature, bug fix, or improvement while maintaining code readability and consistency.
 
-Create a `.env` file in the project root:
+### 6. Test Your Changes
 
-```env
-GOOGLE_API_KEY=YOUR_API_KEY
-```
-
----
-
-## 4. Run the Application
+Launch the application and verify functionality.
 
 ```bash
 uv run streamlit run app.py
 ```
 
----
-
-# Development Workflow
-
-## Create a Branch
-
-Before making changes, create a new branch:
+### 7. Commit Changes
 
 ```bash
-git checkout -b feature-name
+git add .
+git commit -m "Describe your changes"
 ```
 
-Example:
+### 8. Push Changes
 
 ```bash
-git checkout -b improve-news-analysis
+git push origin feature/your-feature-name
 ```
 
----
+### 9. Submit a Pull Request
 
-## Make Changes
+Create a pull request with:
 
-Possible contribution areas include:
-
-* User Interface improvements
-* AI prompt optimization
-* Contract analysis enhancements
-* News credibility evaluation improvements
-* Documentation updates
-* Bug fixes
-* Performance optimization
+* Description of changes
+* Motivation for the change
+* Screenshots (if applicable)
 
 ---
 
-## Commit Changes
+## Contribution Guidelines
 
-Use clear and descriptive commit messages.
+Contributors should:
 
-Example:
-
-```bash
-git commit -m "Improved contract risk analysis"
-```
-
----
-
-## Push Changes
-
-```bash
-git push origin feature-name
-```
-
----
-
-## Submit a Pull Request
-
-Create a Pull Request describing:
-
-* What changes were made
-* Why the changes were made
-* Any testing performed
-
----
-
-# Project Structure
-
-```text
-truthlens-ai/
-│
-├── app.py
-│
-├── modules/
-│   ├── contract_analyzer.py
-│   └── news_analyzer.py
-│
-├── utils/
-│   ├── gemini_client.py
-│   └── pdf_loader.py
-│
-├── README.md
-├── USER_MANUAL.md
-├── SYSTEM_ARCHITECTURE.md
-├── PROJECT_REPORT.md
-├── CONTRIBUTING.md
-├── pyproject.toml
-└── uv.lock
-```
-
----
-
-# Coding Guidelines
-
-* Follow Python best practices.
-* Write readable and maintainable code.
-* Use meaningful variable and function names.
-* Keep modules focused on a single responsibility.
+* Follow Python coding standards.
+* Keep code modular and maintainable.
 * Document significant changes.
+* Test features before submission.
+* Maintain compatibility with existing functionality.
 
 ---
 
-# Reporting Issues
+## Areas for Contribution
 
-When reporting issues, include:
+Potential areas for future improvement include:
 
-* Steps to reproduce the problem
+* Real-time fact-checking integration
+* Multi-language support
+* Enhanced risk scoring
+* Additional AI model providers
+* Improved UI/UX
+* Performance optimization
+* Advanced misinformation detection
+
+---
+
+## Reporting Issues
+
+When reporting issues, please include:
+
+* Description of the problem
+* Steps to reproduce
 * Expected behavior
 * Actual behavior
-* Error messages (if any)
-* Environment details
+* Relevant screenshots or logs
 
 ---
 
-# Feature Requests
+## Code of Conduct
 
-Feature requests should include:
-
-* Problem description
-* Proposed solution
-* Expected impact
-* Implementation ideas (optional)
+Please be respectful and constructive when collaborating with other contributors.
 
 ---
 
-# Acknowledgements
+## Project Team
 
-We appreciate all contributors who help improve TruthLens AI.
-
-Your contributions help make information analysis more accessible and reliable.
+* Simran Sharma
+* Kishor Chary
 
 ---
 
-# Project
+## Version
 
-TruthLens AI
+TruthLens AI v1.0
 
-Version 1.0
+Hackathon Prototype Contribution Guide
