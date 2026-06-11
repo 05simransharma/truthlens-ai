@@ -3,6 +3,10 @@ from utils.gemini_client import model
 
 def analyze_contract(contract_text):
 
+    # Check if PDF text extraction failed
+    if not contract_text or not contract_text.strip():
+        return "❌ No text could be extracted from the uploaded PDF."
+
     prompt = f"""
 You are a legal risk analysis assistant.
 
@@ -20,6 +24,45 @@ Contract:
 {contract_text}
 """
 
-    response = model.generate_content(prompt)
+    try:
+        response = model.generate_content(prompt)
 
-    return response.text
+        # First try the simple accessor
+        try:
+            if response.text:
+                return response.text
+        except Exception:
+            pass
+
+        # Fallback for Gemini responses
+        if hasattr(response, "candidates") and response.candidates:
+
+            candidate = response.candidates[0]
+
+            if (
+                hasattr(candidate, "content")
+                and candidate.content
+                and hasattr(candidate.content, "parts")
+                and candidate.content.parts
+            ):
+
+                output = []
+
+                for part in candidate.content.parts:
+                    if hasattr(part, "text"):
+                        output.append(part.text)
+
+                if output:
+                    return "\n".join(output)
+
+        return (
+            "⚠️ Gemini returned an empty response.\n\n"
+            "Possible causes:\n"
+            "- Contract text extraction failed\n"
+            "- Input was too large\n"
+            "- Gemini blocked the response\n"
+            "- Temporary API issue"
+        )
+
+    except Exception as e:
+        return f"❌ Error while analyzing contract:\n\n{str(e)}"
