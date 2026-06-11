@@ -1,7 +1,7 @@
-from utils.gemini_client import model
+from utils.gemini_client import get_model
 
 
-def analyze_contract(contract_text):
+def analyze_contract(contract_text, api_key):
 
     # Check if PDF text extraction failed
     if not contract_text or not contract_text.strip():
@@ -25,6 +25,7 @@ Contract:
 """
 
     try:
+        model = get_model(api_key)
         response = model.generate_content(prompt)
 
         # First try the simple accessor

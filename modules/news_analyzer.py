@@ -1,7 +1,12 @@
-from utils.gemini_client import model
+from utils.gemini_client import get_model
 
 
-def analyze_news(article):
+def analyze_news(article, api_key):
+
+    if not article.strip():
+        return "❌ Please enter a news article."
+
+    model = get_model(api_key)
 
     prompt = f"""
 You are a fact-checking assistant.
@@ -19,6 +24,17 @@ Article:
 {article}
 """
 
-    response = model.generate_content(prompt)
+    try:
 
-    return response.text
+        response = model.generate_content(prompt)
+
+        try:
+            if response.text:
+                return response.text
+        except Exception:
+            pass
+
+        return "⚠️ Gemini returned an empty response."
+
+    except Exception as e:
+        return f"❌ Error while analyzing article:\n\n{str(e)}"

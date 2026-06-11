@@ -59,19 +59,31 @@ with st.sidebar:
 
     st.markdown("---")
 
+    st.header("AI Settings")
+
+    api_key = st.text_input(
+        "Gemini API Key (BYOK)",
+        type="password",
+        help="Bring Your Own Key"
+    )
+
+    st.markdown("---")
+
     st.markdown("### Features")
 
     st.markdown("""
-    ✅ Contract Risk Analysis
+✅ Contract Risk Analysis
 
-    ✅ News Credibility Analysis
+✅ News Credibility Analysis
 
-    ✅ AI-Powered Summarization
+✅ AI-Powered Summarization
 
-    ✅ Risk Detection
+✅ Risk Detection
 
-    ✅ Bias Identification
-    """)
+✅ Bias Identification
+
+✅ BYOK Support
+""")
 
     st.markdown("---")
 
@@ -110,15 +122,26 @@ with tab1:
             use_container_width=True
         ):
 
-            with st.spinner("Analyzing contract..."):
+            if not api_key:
 
-                contract_text = extract_text(uploaded_pdf)
+                st.warning(
+                    "Please enter your Gemini API Key in the sidebar."
+                )
 
-                result = analyze_contract(contract_text)
+            else:
 
-                st.markdown("## 📋 Analysis Report")
+                with st.spinner("Analyzing contract..."):
 
-                st.markdown(result)
+                    contract_text = extract_text(uploaded_pdf)
+
+                    result = analyze_contract(
+                        contract_text,
+                        api_key
+                    )
+
+                    st.markdown("## 📋 Analysis Report")
+
+                    st.markdown(result)
 
 # ==================================================
 # NEWS ANALYZER
@@ -145,11 +168,20 @@ with tab2:
                 "Please enter an article."
             )
 
+        elif not api_key:
+
+            st.warning(
+                "Please enter your Gemini API Key in the sidebar."
+            )
+
         else:
 
             with st.spinner("Analyzing article..."):
 
-                result = analyze_news(article)
+                result = analyze_news(
+                    article,
+                    api_key
+                )
 
                 st.markdown("## 📊 Credibility Report")
 
@@ -160,5 +192,5 @@ with tab2:
 st.divider()
 
 st.caption(
-    "TruthLens AI • Hackathon Prototype • Powered by Gemini"
+    "TruthLens AI • Hackathon Prototype • Powered by Gemini • BYOK Enabled"
 )
