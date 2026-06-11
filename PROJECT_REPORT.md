@@ -6,12 +6,7 @@
 
 TruthLens AI is an AI-powered trust and risk intelligence platform developed to help users better understand complex contracts and evaluate the credibility of news content. The system utilizes Google's Gemini Large Language Model (LLM) to analyze text, identify risks, detect potential bias, and generate actionable insights.
 
-The platform addresses two common challenges faced by users today:
-
-1. Understanding lengthy legal contracts.
-2. Identifying potentially misleading or biased news content.
-
-By leveraging Generative AI, TruthLens AI simplifies decision-making and improves information transparency.
+The platform supports Bring Your Own Key (BYOK), allowing users to securely provide their own Gemini API credentials at runtime.
 
 ---
 
@@ -19,9 +14,7 @@ By leveraging Generative AI, TruthLens AI simplifies decision-making and improve
 
 The rapid growth of digital information has made it increasingly difficult for individuals to evaluate the reliability and implications of the content they consume.
 
-Legal contracts often contain complex language that can obscure important obligations and risks. Similarly, the widespread availability of online news has increased the risk of misinformation, sensationalism, and biased reporting.
-
-TruthLens AI was developed to address these challenges by providing automated analysis and simplified insights through artificial intelligence.
+TruthLens AI addresses these challenges by providing automated analysis and simplified insights through Generative AI.
 
 ---
 
@@ -29,45 +22,37 @@ TruthLens AI was developed to address these challenges by providing automated an
 
 Users face several challenges when reviewing contracts and news articles:
 
-* Legal contracts are often lengthy and difficult to interpret.
+* Legal contracts are lengthy and difficult to interpret.
 * Important clauses and risks may be overlooked.
 * News content may contain misinformation or hidden bias.
-* Manual verification is time-consuming and requires expertise.
-
-The absence of accessible tools for analyzing such content can lead to poor decision-making and increased risk.
+* Manual verification is time-consuming.
 
 ---
 
 # 3. Objectives
 
-The primary objectives of TruthLens AI are:
-
 * Simplify contract review and risk assessment.
 * Improve transparency in legal documentation.
-* Evaluate the credibility of news articles.
+* Evaluate news credibility.
 * Detect potential bias and misinformation.
-* Provide AI-generated recommendations and summaries.
-* Create an intuitive and user-friendly interface.
+* Provide AI-generated recommendations.
+* Deliver a user-friendly experience.
 
 ---
 
 # 4. Proposed Solution
 
-TruthLens AI provides two integrated analysis modules:
+TruthLens AI provides:
 
 ## Contract Risk Analyzer
 
-Allows users to upload PDF contracts and receive:
-
 * Executive summaries
 * Risk assessments
-* Identification of risky clauses
+* Risky clause identification
 * User obligations
 * Recommendations
 
 ## News Credibility Analyzer
-
-Allows users to submit news content and receive:
 
 * Main claim extraction
 * Bias analysis
@@ -79,10 +64,10 @@ Allows users to submit news content and receive:
 
 # 5. System Architecture
 
-The system follows a modular architecture consisting of:
-
 ```text
 User
+  ↓
+BYOK Authentication Layer
   ↓
 Streamlit Interface
   ↓
@@ -92,14 +77,6 @@ Gemini AI Service
   ↓
 Generated Insights
 ```
-
-### Components
-
-1. User Interface Layer
-2. Document Processing Layer
-3. Contract Analysis Module
-4. News Analysis Module
-5. Gemini AI Integration Layer
 
 ---
 
@@ -117,21 +94,20 @@ Generated Insights
 
 * Google Gemini API
 
+## Authentication Model
+
+* Bring Your Own Key (BYOK)
+* Runtime Gemini API Authentication
+
 ## Libraries
 
 * google-generativeai
 * pypdf
-* python-dotenv
 * plotly
 
 ## Dependency Management
 
 * uv
-
-## Version Control
-
-* Git
-* GitLab
 
 ---
 
@@ -141,94 +117,69 @@ Generated Insights
 
 1. User uploads a PDF contract.
 2. Text is extracted using PyPDF.
-3. Extracted content is passed to Gemini AI.
-4. The model performs risk analysis.
-5. Results are displayed to the user.
+3. Gemini analyzes the contract.
+4. Risk assessment is generated.
+5. Results are displayed.
 
 ## News Analysis Workflow
 
-1. User submits a news article.
-2. Article content is sent to Gemini AI.
-3. The model evaluates credibility and bias.
-4. Results are generated and displayed.
+1. User pastes a news article.
+2. Gemini evaluates the content.
+3. Credibility and bias are assessed.
+4. Results are displayed.
 
 ---
 
 # 8. Features
 
-### Contract Risk Analyzer
-
-* PDF Upload Support
-* Contract Summarization
+* Contract Risk Analysis
+* News Credibility Analysis
+* AI-Powered Summarization
 * Risk Identification
-* Obligation Detection
-* AI Recommendations
-
-### News Credibility Analyzer
-
-* Credibility Assessment
 * Bias Detection
-* Claim Extraction
-* Information Gap Analysis
-* AI Verdict Generation
-
-### General Features
-
-* Interactive User Interface
-* Fast Analysis
-* Modular Architecture
-* Cloud-Based AI Integration
+* BYOK Support
+* Secure Runtime Authentication
+* Interactive Streamlit Interface
 
 ---
 
 # 9. Results
 
-The developed system successfully performs:
+The platform successfully performs:
 
-* Contract analysis using uploaded PDF documents.
-* News credibility evaluation from user-provided content.
-* AI-powered summaries and recommendations.
+* Contract analysis from uploaded PDFs.
+* News credibility evaluation.
+* AI-generated summaries and recommendations.
 * Risk and bias identification.
-
-Testing demonstrated that the platform provides meaningful insights within seconds while maintaining a simple user experience.
 
 ---
 
 # 10. Challenges Faced
 
-During development, the following challenges were encountered:
-
-* Gemini API rate limits during testing.
+* Gemini API rate limits.
 * Environment configuration issues.
-* Dependency management and package compatibility.
-* Prompt optimization for accurate results.
-* PDF text extraction consistency.
-
-These challenges were resolved through proper configuration, testing, and modular development practices.
+* Dependency compatibility.
+* Prompt engineering.
+* PDF extraction consistency.
 
 ---
 
 # 11. Future Scope
 
-Future enhancements may include:
-
 * Real-time fact-checking integration
 * Multi-language support
-* Social media content verification
-* User authentication and history tracking
-* Risk score visualizations
-* Browser extension support
-* Advanced misinformation detection
+* Browser extension
+* Social media verification
+* Multiple AI model providers
+* Advanced trust scoring dashboard
 
 ---
 
 # 12. Conclusion
 
-TruthLens AI demonstrates how Generative AI can be used to improve transparency and decision-making in everyday digital interactions.
+TruthLens AI demonstrates how Generative AI can improve transparency and decision-making by simplifying contract review and evaluating news credibility.
 
-By simplifying contract review and assisting users in evaluating news credibility, the platform provides practical value while showcasing the capabilities of modern AI systems.
-
-The project establishes a strong foundation for future development into a comprehensive trust and risk intelligence platform.
+The project provides a strong foundation for future development into a comprehensive trust and risk intelligence platform.
 
 ---
 
@@ -239,10 +190,8 @@ The project establishes a strong foundation for future development into a compre
 
 ---
 
-# Project
+# Version
 
-TruthLens AI
+TruthLens AI v1.0
 
 Hackathon Prototype Submission
-
-Version 1.0

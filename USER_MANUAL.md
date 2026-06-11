@@ -4,9 +4,11 @@
 
 ## Introduction
 
-TruthLens AI is an AI-powered trust and risk intelligence platform that helps users analyze contracts and assess the credibility of news articles using Google's Gemini AI.
+TruthLens AI is an AI-powered Trust and Risk Intelligence Platform that helps users analyze contracts and evaluate the credibility of news articles using Google Gemini AI.
 
-The application provides simplified summaries, risk assessments, credibility evaluations, and actionable insights to help users make informed decisions.
+The application provides contract summaries, risk assessments, credibility evaluations, bias detection, and actionable insights.
+
+TruthLens AI follows a Bring Your Own Key (BYOK) model, allowing users to securely provide their own Gemini API key during runtime.
 
 ---
 
@@ -14,7 +16,7 @@ The application provides simplified summaries, risk assessments, credibility eva
 
 ## Hardware Requirements
 
-* Computer/Laptop
+* Computer or Laptop
 * Internet Connection
 
 ## Software Requirements
@@ -43,50 +45,56 @@ Using uv:
 uv sync
 ```
 
-Or using pip:
+---
 
-```bash
-pip install -r requirements.txt
-```
-
-## Step 3: Configure Environment Variables
-
-Create a `.env` file in the project root directory:
-
-```env
-GOOGLE_API_KEY=YOUR_API_KEY
-```
-
-## Step 4: Launch the Application
+## Step 3: Launch the Application
 
 ```bash
 uv run streamlit run app.py
 ```
 
-The application will open automatically in your default browser.
+The application will automatically open in your browser.
 
 ---
 
-# Application Modules
+# Using TruthLens AI
 
-## 1. Contract Risk Analyzer
+## Step 1
 
-### Purpose
+Launch the application.
+
+## Step 2
+
+Enter your Gemini API Key in the sidebar.
+
+## Step 3
+
+Choose one of the available modules:
+
+* Contract Risk Analyzer
+* News Credibility Analyzer
+
+## Step 4
+
+Upload a contract PDF or paste a news article.
+
+## Step 5
+
+Click the Analyze button.
+
+## Step 6
+
+Review the AI-generated analysis report.
+
+---
+
+# Contract Risk Analyzer
+
+## Purpose
 
 The Contract Risk Analyzer helps users understand legal contracts by generating summaries, identifying risks, and highlighting obligations.
 
-### Steps to Use
-
-1. Open the application.
-2. Navigate to the **Contract Risk Analyzer** tab.
-3. Click **Upload Contract PDF**.
-4. Select a PDF contract file.
-5. Click **Analyze Contract**.
-6. Wait for the AI analysis to complete.
-
-### Output
-
-The application generates:
+## Outputs
 
 * Executive Summary
 * Risk Assessment
@@ -97,23 +105,13 @@ The application generates:
 
 ---
 
-## 2. News Credibility Analyzer
+# News Credibility Analyzer
 
-### Purpose
+## Purpose
 
 The News Credibility Analyzer evaluates the reliability and credibility of news articles.
 
-### Steps to Use
-
-1. Open the application.
-2. Navigate to the **News Credibility Analyzer** tab.
-3. Paste the news article into the text area.
-4. Click **Analyze News**.
-5. Wait for the AI analysis to complete.
-
-### Output
-
-The application generates:
+## Outputs
 
 * Main Claims
 * Bias Analysis
@@ -130,53 +128,55 @@ The application generates:
 * Automated summarization
 * Risk identification
 * Bias detection
-* User-friendly interface
+* Bring Your Own Key (BYOK)
+* Interactive user interface
 * Fast analysis results
 
 ---
 
 # Troubleshooting
 
-## API Key Error
+## Invalid API Key
 
-Problem:
+### Problem
 
-```text
-GOOGLE_API_KEY not found
-```
+Authentication failed while connecting to Gemini.
 
-Solution:
+### Solution
 
-* Verify that the `.env` file exists.
-* Ensure the API key is correctly configured.
+* Verify that the API key is valid.
+* Ensure the key was generated from Google AI Studio.
+* Re-enter the API key in the sidebar.
 
 ---
 
 ## Quota Exceeded Error
 
-Problem:
+### Problem
 
 ```text
 429 ResourceExhausted
 ```
 
-Solution:
+### Solution
 
-* Wait for the quota reset period.
-* Retry after a few seconds.
+* Wait for the Gemini quota reset period.
+* Retry after a few moments.
+* Use a different Gemini API key if available.
 
 ---
 
 ## PDF Upload Issues
 
-Problem:
+### Problem
 
-PDF is not processed correctly.
+The PDF is not processed correctly.
 
-Solution:
+### Solution
 
 * Ensure the file is in PDF format.
 * Verify that the PDF contains selectable text.
+* Avoid scanned image-only PDFs.
 
 ---
 
@@ -184,7 +184,7 @@ Solution:
 
 * Results depend on AI-generated analysis.
 * Very large contracts may require longer processing times.
-* News credibility assessments should be used as guidance rather than definitive judgments.
+* News credibility assessments should be treated as guidance rather than definitive judgments.
 
 ---
 
@@ -195,6 +195,7 @@ Solution:
 * Social media content verification
 * Browser extension integration
 * Advanced risk scoring dashboard
+* Multi-model AI support
 
 ---
 

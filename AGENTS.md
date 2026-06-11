@@ -4,11 +4,13 @@
 
 TruthLens AI utilizes AI-powered analysis workflows to process contracts and news articles.
 
-The system currently employs the following logical agents:
+The system currently employs the following logical agents.
 
-### Contract Analysis Agent
+---
 
-Responsibilities:
+## Contract Analysis Agent
+
+### Responsibilities
 
 * Analyze uploaded contracts
 * Identify risky clauses
@@ -16,9 +18,11 @@ Responsibilities:
 * Highlight obligations
 * Provide recommendations
 
-### News Analysis Agent
+---
 
-Responsibilities:
+## News Analysis Agent
+
+### Responsibilities
 
 * Analyze news content
 * Extract key claims
@@ -26,14 +30,18 @@ Responsibilities:
 * Assess credibility
 * Generate verdicts
 
-### AI Inference Agent
+---
 
-Responsibilities:
+## AI Inference Agent
+
+### Responsibilities
 
 * Process prompts
 * Generate structured responses
 * Provide contextual insights
 * Support contract and news analysis workflows
+* Support Bring Your Own Key (BYOK) authentication
+* Perform analysis using Google Gemini models
 
 ---
 
@@ -41,6 +49,8 @@ Responsibilities:
 
 ```text
 User Input
+    ↓
+BYOK Authentication
     ↓
 Analysis Module
     ↓
