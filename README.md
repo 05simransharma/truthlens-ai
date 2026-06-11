@@ -1,5 +1,11 @@
 # 🔍 TruthLens AI
 
+## 🌐 Live Demo
+
+https://truthlens-aigit-s14a.streamlit.app/
+
+---
+
 ## Overview
 
 TruthLens AI is an AI-powered Trust and Risk Intelligence Platform designed to help users make informed decisions by analyzing contracts and evaluating the credibility of news content.
