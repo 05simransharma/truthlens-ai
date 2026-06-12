@@ -42,6 +42,8 @@ The system currently employs the following logical agents.
 * Support contract and news analysis workflows
 * Support Bring Your Own Key (BYOK) authentication
 * Perform analysis using Google Gemini models
+* Supports multilingual response generation
+* Supports user-provided Gemini API keys (BYOK)
 
 ---
 

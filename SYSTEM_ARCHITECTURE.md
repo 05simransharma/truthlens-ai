@@ -134,16 +134,30 @@ utils/gemini_client.py
 ```text
 User
   ↓
+Language Selection Layer
+  ↓
 BYOK Authentication Layer
-  ↓
-Streamlit Interface
-  ↓
-Analysis Modules
   ↓
 Gemini AI Service
   ↓
-Results
+Analysis Modules
+  ↓
+Localized Results
 ```
+
+---
+
+## Localization Layer
+
+### Responsibilities
+
+* Manage language selection
+* Render UI content in English, Hindi, and Telugu
+* Support future language expansion
+
+### File
+
+utils/translations.py
 
 ---
 

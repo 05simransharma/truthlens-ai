@@ -6,17 +6,23 @@ https://truthlens-aigit-s14a.streamlit.app/
 
 ---
 
-## Overview
+# Overview
 
-TruthLens AI is an AI-powered Trust and Risk Intelligence Platform designed to help users make informed decisions by analyzing contracts and evaluating the credibility of news content.
+TruthLens AI is an AI-powered Trust and Risk Intelligence Platform designed to help users make informed decisions by analyzing legal contracts and evaluating the credibility of news content.
 
-The platform leverages Google's Gemini AI model to provide clear summaries, identify risks, detect bias, and generate actionable insights from complex documents and articles.
+The platform leverages Google's Gemini AI model to generate summaries, identify risks, detect bias, and provide actionable insights from complex documents and articles.
 
 TruthLens AI supports **Bring Your Own Key (BYOK)**, allowing users to securely connect their own Gemini API credentials without storing sensitive keys on the platform.
 
+The application also supports **Multilingual User Interfaces** in:
+
+* English
+* Hindi
+* Telugu
+
 ---
 
-## Problem Statement
+# Problem Statement
 
 In today's digital world, users are constantly exposed to:
 
@@ -28,29 +34,29 @@ Many individuals lack the expertise or time required to carefully review such co
 
 ---
 
-## Solution
+# Solution
 
-TruthLens AI simplifies information analysis by using Generative AI to:
+TruthLens AI simplifies information analysis through Generative AI by enabling users to:
 
 * Analyze contracts and identify potential risks.
 * Summarize lengthy legal documents.
 * Evaluate the credibility of news articles.
 * Detect possible bias and misinformation.
-* Provide understandable recommendations.
+* Receive understandable recommendations.
 
 ---
 
-## Features
+# Features
 
-### 📄 Contract Risk Analyzer
+## 📄 Contract Risk Analyzer
 
 * Upload PDF contracts.
-* Generate concise summaries.
+* Generate executive summaries.
 * Identify risky clauses.
 * Highlight user obligations.
 * Provide recommendations and risk insights.
 
-### 📰 News Credibility Analyzer
+## 📰 News Credibility Analyzer
 
 * Analyze news articles and reports.
 * Extract major claims.
@@ -58,42 +64,50 @@ TruthLens AI simplifies information analysis by using Generative AI to:
 * Evaluate credibility.
 * Generate AI-powered verdicts.
 
-### 🔑 Bring Your Own Key (BYOK)
+## 🔑 Bring Your Own Key (BYOK)
 
 * Secure Gemini API integration.
 * User-provided API keys.
 * No permanent credential storage.
-* User-controlled AI usage and quota.
+* User-controlled AI usage and quota management.
+
+## 🌐 Multilingual Support
+
+* English Interface
+* Hindi Interface
+* Telugu Interface
+* Dynamic Language Switching
+* Localized User Experience
 
 ---
 
-## Tech Stack
+# Tech Stack
 
-### Frontend
+## Frontend
 
 * Streamlit
 
-### Backend
+## Backend
 
 * Python
 
-### AI Model
+## AI Model
 
 * Google Gemini 2.5 Flash
 
-### Libraries
+## Libraries
 
 * google-generativeai
 * pypdf
 * plotly
 
-### Package Management
+## Package Management
 
 * uv
 
 ---
 
-## Project Structure
+# Project Structure
 
 ```text
 truthlens-ai/
@@ -105,28 +119,35 @@ truthlens-ai/
 │   └── news_analyzer.py
 │
 ├── utils/
+│   ├── translations.py
 │   ├── gemini_client.py
 │   └── pdf_loader.py
 │
-├── pyproject.toml
-├── uv.lock
+├── assets/
+│
 ├── README.md
+├── CONTRIBUTING.md
 ├── USER_MANUAL.md
 ├── SYSTEM_ARCHITECTURE.md
 ├── PROJECT_REPORT.md
-└── assets/
+├── AGENTS.md
+│
+├── pyproject.toml
+└── uv.lock
 ```
 
-## Installation
+---
 
-### Clone Repository
+# Installation
+
+## Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/05simransharma/truthlens-ai.git
 cd truthlens-ai
 ```
 
-### Install Dependencies
+## Install Dependencies
 
 ```bash
 uv sync
@@ -134,75 +155,115 @@ uv sync
 
 ---
 
-## Running the Application
+# Running the Application
 
 ```bash
 uv run streamlit run app.py
 ```
 
+The application will launch in your default browser.
+
 ---
 
-## Usage
+# Usage
 
-### Step 1
+## Step 1
 
 Launch the application.
 
-### Step 2
+## Step 2
 
 Enter your Gemini API Key in the sidebar.
 
-### Step 3
+## Step 3
+
+Select your preferred language:
+
+* English
+* Hindi
+* Telugu
+
+## Step 4
 
 Choose one of the available modules:
 
 * Contract Risk Analyzer
 * News Credibility Analyzer
 
-### Step 4
+## Step 5
 
 Upload a contract PDF or paste a news article.
 
-### Step 5
+## Step 6
 
-Click Analyze and review the generated report.
+Click the Analyze button and review the generated insights.
 
 ---
 
-## Application UI
+# Application UI
 
-### Home Page
+## Home Page
 
 ![Home Page](assets/Homepage.png)
 
-### Contract Analysis
+## Contract Analysis
 
 ![Contract Analyzer](assets/ContractAnalysis.png)
 
-### News Analysis
+## News Analysis
 
 ![News Analyzer](assets/NewsAnalysis.png)
 
+## Hindi Interface
+
+![Hindi Interface](assets/HindiUI.png)
+
+## Telugu Interface
+
+![Telugu Interface](assets/TeluguUI.png)
+
 ---
 
-## Future Enhancements
+# Documentation
+
+Additional project documentation is available:
+
+* USER_MANUAL.md
+* SYSTEM_ARCHITECTURE.md
+* PROJECT_REPORT.md
+* AGENTS.md
+* CONTRIBUTING.md
+
+---
+
+# Security
+
+* User API keys are never stored permanently.
+* Credentials remain under user control through BYOK.
+* Uploaded documents are processed temporarily.
+* No contract or news data is stored after analysis.
+
+---
+
+# Future Enhancements
 
 * Real-time web fact-checking
-* Multi-language support
 * Browser extension integration
 * Social media content verification
 * Advanced trust scoring dashboard
 * Multiple AI model providers
+* Local AI inference support
+* Additional Indian language support
 
 ---
 
-## Team Members
+# Team Members
 
 * Simran Sharma
 * Kishor Chary
 
 ---
 
-## License
+# License
 
 This project was developed as part of a hackathon and is intended for educational and demonstration purposes.

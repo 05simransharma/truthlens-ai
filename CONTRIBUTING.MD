@@ -8,119 +8,86 @@ This project was developed as part of a hackathon and demonstrates the use of Ge
 
 ## How to Contribute
 
-### 1. Fork the Repository
-
-Create a personal copy of the repository on your Git platform.
-
-### 2. Clone the Repository
+1. Fork the repository.
+2. Create a new feature branch.
 
 ```bash
-git clone <repository-url>
-cd truthlens-ai
+git checkout -b feature-name
 ```
 
-### 3. Install Dependencies
-
-Using uv:
+3. Make your changes.
+4. Test the application locally.
 
 ```bash
 uv sync
-```
-
-### 4. Create a Feature Branch
-
-```bash
-git checkout -b feature/your-feature-name
-```
-
-### 5. Make Changes
-
-Implement your feature, bug fix, or improvement while maintaining code readability and consistency.
-
-### 6. Test Your Changes
-
-Launch the application and verify functionality.
-
-```bash
 uv run streamlit run app.py
 ```
 
-### 7. Commit Changes
+5. Commit your changes.
 
 ```bash
-git add .
 git commit -m "Describe your changes"
 ```
 
-### 8. Push Changes
+6. Push to your fork.
 
 ```bash
-git push origin feature/your-feature-name
+git push origin feature-name
 ```
 
-### 9. Submit a Pull Request
-
-Create a pull request with:
-
-* Description of changes
-* Motivation for the change
-* Screenshots (if applicable)
+7. Create a Pull Request.
 
 ---
 
-## Contribution Guidelines
+## Contribution Areas
 
-Contributors should:
+Contributions are welcome in the following areas:
 
-* Follow Python coding standards.
-* Keep code modular and maintainable.
+### AI Features
+
+* Additional AI model integrations
+* Local AI inference support
+* Fact-checking improvements
+* Prompt engineering enhancements
+
+### Multilingual Support
+
+* New language translations
+* Translation quality improvements
+* Localization enhancements
+
+### User Experience
+
+* UI/UX improvements
+* Accessibility enhancements
+* Performance optimizations
+
+### Documentation
+
+* README improvements
+* User guides
+* Architecture documentation
+
+---
+
+## Coding Standards
+
+* Follow Python best practices.
+* Write clear and maintainable code.
+* Keep modules small and focused.
 * Document significant changes.
-* Test features before submission.
-* Maintain compatibility with existing functionality.
-
----
-
-## Areas for Contribution
-
-Potential areas for future improvement include:
-
-* Real-time fact-checking integration
-* Multi-language support
-* Enhanced risk scoring
-* Additional AI model providers
-* Improved UI/UX
-* Performance optimization
-* Advanced misinformation detection
 
 ---
 
 ## Reporting Issues
 
-When reporting issues, please include:
+If you encounter a bug or have a feature request, please open an issue with:
 
-* Description of the problem
+* Description
 * Steps to reproduce
 * Expected behavior
-* Actual behavior
-* Relevant screenshots or logs
+* Screenshots (if applicable)
 
 ---
 
-## Code of Conduct
-
-Please be respectful and constructive when collaborating with other contributors.
-
----
-
-## Project Team
-
-* Simran Sharma
-* Kishor Chary
-
----
-
-## Version
-
-TruthLens AI v1.0
-
-Hackathon Prototype Contribution Guide
+Thank you for helping improve TruthLens AI.

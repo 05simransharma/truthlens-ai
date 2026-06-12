@@ -65,7 +65,12 @@ Launch the application.
 
 ## Step 2
 
-Enter your Gemini API Key in the sidebar.
+- AI Configuration
+
+1. Enter your Gemini API Key in the sidebar.
+2. Select your preferred language.
+3. Choose an analyzer.
+4. Generate AI-powered insights.
 
 ## Step 3
 
@@ -131,6 +136,7 @@ The News Credibility Analyzer evaluates the reliability and credibility of news 
 * Bring Your Own Key (BYOK)
 * Interactive user interface
 * Fast analysis results
+* Multi-Language Support
 
 ---
 
@@ -191,11 +197,26 @@ The PDF is not processed correctly.
 # Future Improvements
 
 * Real-time fact checking
-* Multi-language support
 * Social media content verification
 * Browser extension integration
 * Advanced risk scoring dashboard
 * Multi-model AI support
+
+---
+
+## Multilingual Support
+
+TruthLens AI supports the following languages:
+
+* English
+* Hindi
+* Telugu
+
+To change the language:
+
+1. Open the sidebar.
+2. Select your preferred language.
+3. The interface updates automatically.
 
 ---
 
