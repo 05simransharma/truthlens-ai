@@ -3,6 +3,7 @@ import streamlit as st
 from utils.pdf_loader import extract_text
 from modules.contract_analyzer import analyze_contract
 from modules.news_analyzer import analyze_news
+from utils.translations import translations
 
 st.set_page_config(
     page_title="TruthLens AI",
@@ -10,7 +11,45 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---------- CUSTOM STYLING ----------
+# ==================================================
+# SIDEBAR
+# ==================================================
+with st.sidebar:
+
+    language = st.selectbox(
+        "🌐 Language",
+        ["English", "Hindi", "Telugu"]
+    )
+
+    t = translations[language]
+
+    st.title(t["title"])
+
+    st.caption("AI-powered risk & credibility analysis")
+
+    st.markdown("---")
+
+    st.header(f"🔑 {t["api_configuration"]}")
+
+    api_key = st.text_input(
+    t["api_key"],
+    type="password"
+    )
+
+
+    st.markdown("---")
+
+    st.markdown(f"### {t['features']}")
+
+    st.markdown(t["feature_list"])
+
+    st.markdown("---")
+
+    st.info(t["sidebar_info"])
+
+# ==================================================
+# CUSTOM STYLING
+# ==================================================
 
 st.markdown("""
 <style>
@@ -29,74 +68,32 @@ st.markdown("""
     color: gray;
     margin-bottom: 2rem;
 }
-
-.feature-box {
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    margin-top: 10px;
-}
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- HEADER ----------
+# ==================================================
+# HEADER
+# ==================================================
 
 st.markdown(
-    '<div class="big-title">🔍 TruthLens AI</div>',
+    f'<div class="big-title">🔍 {t["title"]}</div>',
     unsafe_allow_html=True
 )
 
 st.markdown(
-    '<div class="subtitle">Trust & Risk Intelligence Platform</div>',
+    f'<div class="subtitle">{t["subtitle"]}</div>',
     unsafe_allow_html=True
 )
 
-# ---------- SIDEBAR ----------
-
-with st.sidebar:
-
-    st.title("TruthLens AI")
-
-    st.markdown("---")
-
-    st.header("AI Settings")
-
-    api_key = st.text_input(
-        "Gemini API Key (BYOK)",
-        type="password",
-        help="Bring Your Own Key"
-    )
-
-    st.markdown("---")
-
-    st.markdown("### Features")
-
-    st.markdown("""
-✅ Contract Risk Analysis
-
-✅ News Credibility Analysis
-
-✅ AI-Powered Summarization
-
-✅ Risk Detection
-
-✅ Bias Identification
-
-✅ BYOK Support
-""")
-
-    st.markdown("---")
-
-    st.info(
-        "TruthLens AI helps users evaluate "
-        "contracts and news articles using "
-        "AI-powered risk and credibility analysis."
-    )
-
-# ---------- TABS ----------
+# ==================================================
+# TABS
+# ==================================================
 
 tab1, tab2 = st.tabs(
-    ["📄 Contract Risk Analyzer", "📰 News Credibility Analyzer"]
+    [
+        t["contract_tab"],
+        t["news_tab"]
+    ]
 )
 
 # ==================================================
@@ -105,10 +102,10 @@ tab1, tab2 = st.tabs(
 
 with tab1:
 
-    st.subheader("Upload and Analyze Contracts")
+    st.subheader(t["contract_header"])
 
     uploaded_pdf = st.file_uploader(
-        "Upload a PDF Contract",
+        t["upload_pdf"],
         type=["pdf"],
         key="contract_pdf"
     )
@@ -118,7 +115,7 @@ with tab1:
         st.success("PDF uploaded successfully.")
 
         if st.button(
-            "🔍 Analyze Contract",
+            t["analyze_contract"],
             use_container_width=True
         ):
 
@@ -136,10 +133,13 @@ with tab1:
 
                     result = analyze_contract(
                         contract_text,
-                        api_key
+                        api_key,
+                        language
                     )
 
-                    st.markdown("## 📋 Analysis Report")
+                    st.markdown(
+                        t["analysis_report"]
+                    )
 
                     st.markdown(result)
 
@@ -149,7 +149,7 @@ with tab1:
 
 with tab2:
 
-    st.subheader("Analyze News Credibility")
+    st.subheader(t["news_header"])
 
     article = st.text_area(
         "Paste News Article",
@@ -158,7 +158,7 @@ with tab2:
     )
 
     if st.button(
-        "📰 Analyze News",
+        t["analyze_news"],
         use_container_width=True
     ):
 
@@ -180,17 +180,22 @@ with tab2:
 
                 result = analyze_news(
                     article,
-                    api_key
+                    api_key,
+                    language
                 )
 
-                st.markdown("## 📊 Credibility Report")
+                st.markdown(
+                    t["credibility_report"]
+                )
 
                 st.markdown(result)
 
-# ---------- FOOTER ----------
+# ==================================================
+# FOOTER
+# ==================================================
 
 st.divider()
 
 st.caption(
-    "TruthLens AI • Hackathon Prototype • Powered by Gemini • BYOK Enabled"
+    "TruthLens AI • Hackathon Prototype • Powered by Gemini • BYOK Enabled • Multilingual Support"
 )

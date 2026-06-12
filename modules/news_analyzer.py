@@ -1,7 +1,7 @@
 from utils.gemini_client import get_model
 
 
-def analyze_news(article, api_key):
+def analyze_news(article, api_key, language="English"):
 
     if not article.strip():
         return "❌ Please enter a news article."
@@ -9,6 +9,8 @@ def analyze_news(article, api_key):
     model = get_model(api_key)
 
     prompt = f"""
+Respond ONLY in {language}.
+
 You are a fact-checking assistant.
 
 Analyze this article and provide:
@@ -34,7 +36,34 @@ Article:
         except Exception:
             pass
 
-        return "⚠️ Gemini returned an empty response."
+        if hasattr(response, "candidates") and response.candidates:
+
+            candidate = response.candidates[0]
+
+            if (
+                hasattr(candidate, "content")
+                and candidate.content
+                and hasattr(candidate.content, "parts")
+                and candidate.content.parts
+            ):
+
+                output = []
+
+                for part in candidate.content.parts:
+
+                    if hasattr(part, "text"):
+                        output.append(part.text)
+
+                if output:
+                    return "\n".join(output)
+
+        return (
+            "⚠️ Gemini returned an empty response.\n\n"
+            "Possible causes:\n"
+            "- Input was too large\n"
+            "- Gemini blocked the response\n"
+            "- Temporary API issue"
+        )
 
     except Exception as e:
         return f"❌ Error while analyzing article:\n\n{str(e)}"

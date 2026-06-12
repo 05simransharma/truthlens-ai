@@ -1,13 +1,18 @@
 from utils.gemini_client import get_model
 
 
-def analyze_contract(contract_text, api_key):
+def analyze_contract(
+    contract_text,
+    api_key,
+    language="English"
+):
 
-    # Check if PDF text extraction failed
     if not contract_text or not contract_text.strip():
         return "❌ No text could be extracted from the uploaded PDF."
 
     prompt = f"""
+Respond ONLY in {language}.
+
 You are a legal risk analysis assistant.
 
 Analyze the contract and return:
@@ -25,17 +30,19 @@ Contract:
 """
 
     try:
+
         model = get_model(api_key)
+
         response = model.generate_content(prompt)
 
-        # First try the simple accessor
         try:
+
             if response.text:
                 return response.text
+
         except Exception:
             pass
 
-        # Fallback for Gemini responses
         if hasattr(response, "candidates") and response.candidates:
 
             candidate = response.candidates[0]
@@ -50,6 +57,7 @@ Contract:
                 output = []
 
                 for part in candidate.content.parts:
+
                     if hasattr(part, "text"):
                         output.append(part.text)
 
@@ -66,4 +74,8 @@ Contract:
         )
 
     except Exception as e:
-        return f"❌ Error while analyzing contract:\n\n{str(e)}"
+
+        return (
+            "❌ Error while analyzing contract:\n\n"
+            f"{str(e)}"
+        )
