@@ -204,23 +204,18 @@ Click the Analyze button and review the generated insights.
 
 ## Home Page
 
-![Home Page](assets/Homepage.png)
-
-## Contract Analysis
-
-![Contract Analyzer](assets/ContractAnalysis.png)
-
-## News Analysis
-
-![News Analyzer](assets/NewsAnalysis.png)
+![English Contract Analyzer](assets/English_UI_CA.png)
+![English News Analyzer](assets/English_UI_NA.png)
 
 ## Hindi Interface
 
-![Hindi Interface](assets/HindiUI.png)
+![Hindi Contract Analyzer](assets/Hindi_UI_CA.png)
+![Hindi News Analyzer](assets/Hindi_UI_NA.png)
 
-## Telugu Interface
+## Telugu Interface 
 
-![Telugu Interface](assets/TeluguUI.png)
+![Telugu Contract Analyzer](assets/Telugu_UI_CA.png)
+![Telugu News Analyzer](assets/Telugu_UI_NA.png)
 
 ---
 
