@@ -4,9 +4,9 @@
 
 ## Overview
 
-TruthLens AI is an AI-powered trust and risk intelligence platform that analyzes legal contracts and evaluates the credibility of news content using Google's Gemini Large Language Model.
+TruthLens AI is an AI-powered Trust and Risk Intelligence Platform that analyzes legal contracts and evaluates the credibility of news content using Google's Gemini Large Language Model.
 
-The system follows a modular architecture that separates the user interface, document processing, business logic, and AI inference layers.
+The system follows a modular architecture that separates the user interface, document processing, business logic, localization, and AI inference layers.
 
 ---
 
@@ -14,6 +14,8 @@ The system follows a modular architecture that separates the user interface, doc
 
 ```text
 User
+  ↓
+Language Selection Layer
   ↓
 BYOK Authentication Layer
   ↓
@@ -23,7 +25,7 @@ Analysis Modules
   ↓
 Gemini AI Service
   ↓
-Results
+Localized Results
 ```
 
 ---
@@ -43,6 +45,7 @@ Results
 * Receive news article text
 * Collect Gemini API key
 * Display AI-generated analysis
+* Render multilingual interface
 
 ### File
 
@@ -52,7 +55,27 @@ app.py
 
 ---
 
-## 2. Document Processing Layer
+## 2. Localization Layer
+
+### Technology
+
+* Python Dictionary-Based Translation System
+
+### Responsibilities
+
+* Manage language selection
+* Render UI content in English, Hindi, and Telugu
+* Support future language expansion
+
+### File
+
+```text
+utils/translations.py
+```
+
+---
+
+## 3. Document Processing Layer
 
 ### Technology
 
@@ -72,7 +95,7 @@ utils/pdf_loader.py
 
 ---
 
-## 3. Contract Analysis Module
+## 4. Contract Analysis Module
 
 ### Responsibilities
 
@@ -80,6 +103,7 @@ utils/pdf_loader.py
 * Detect risky clauses
 * Highlight obligations
 * Produce recommendations
+* Generate risk assessments
 
 ### File
 
@@ -89,13 +113,14 @@ modules/contract_analyzer.py
 
 ---
 
-## 4. News Analysis Module
+## 5. News Analysis Module
 
 ### Responsibilities
 
 * Extract major claims
 * Detect bias
 * Assess credibility
+* Identify missing information
 * Generate verdicts
 
 ### File
@@ -106,11 +131,11 @@ modules/news_analyzer.py
 
 ---
 
-## 5. AI Inference Layer
+## 6. AI Inference Layer
 
 ### Technology
 
-* Google Gemini API
+* Google Gemini 2.5 Flash
 
 ### Responsibilities
 
@@ -129,35 +154,61 @@ utils/gemini_client.py
 
 ---
 
-# Data Flow
+# Contract Analysis Workflow
 
 ```text
 User
-  ↓
-Language Selection Layer
-  ↓
-BYOK Authentication Layer
-  ↓
-Gemini AI Service
-  ↓
-Analysis Modules
-  ↓
-Localized Results
+ ↓
+Upload Contract PDF
+ ↓
+PDF Text Extraction
+ ↓
+Contract Analyzer Module
+ ↓
+Gemini AI Processing
+ ↓
+Risk Assessment & Summary
+ ↓
+Localized Results Display
 ```
 
 ---
 
-## Localization Layer
+# News Analysis Workflow
 
-### Responsibilities
+```text
+User
+ ↓
+Paste News Article
+ ↓
+News Analyzer Module
+ ↓
+Gemini AI Processing
+ ↓
+Credibility Assessment
+ ↓
+Localized Results Display
+```
 
-* Manage language selection
-* Render UI content in English, Hindi, and Telugu
-* Support future language expansion
+---
 
-### File
+# Data Flow
 
-utils/translations.py
+```text
+User Input
+     ↓
+Language Selection
+     ↓
+BYOK Authentication
+     ↓
+Relevant Analysis Module
+     ↓
+Gemini AI Service
+     ↓
+Generated Insights
+     ↓
+Localized Output
+```
 
 ---
 
@@ -176,6 +227,7 @@ utils/translations.py
 Future versions may include:
 
 * Multiple AI model providers
+* Local AI model integration
 * Database integration
 * User authentication
 * Analysis history
@@ -196,11 +248,15 @@ Future versions may include:
 
 ## AI Services
 
-* Google Gemini
+* Google Gemini 2.5 Flash
 
 ## Document Processing
 
 * PyPDF
+
+## Localization
+
+* Python Translation Layer
 
 ## Dependency Management
 
