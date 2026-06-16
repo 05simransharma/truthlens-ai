@@ -28,7 +28,7 @@ The system currently employs the following logical agents.
 * Extract key claims
 * Detect potential bias
 * Assess credibility
-* Generate verdicts
+* Verify factual statementss
 
 ---
 
