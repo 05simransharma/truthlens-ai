@@ -10,12 +10,24 @@ def generate_ollama(prompt):
             json={
                 "model": "qwen2.5:1.5b",
                 "prompt": prompt,
-                "stream": False
-            }
+                "stream": False,
+                "options": {
+                    "temperature": 0.2
+                }
+            },
+            timeout=300
         )
 
-        return response.json()["response"]
+        response.raise_for_status()
+
+        return response.json().get(
+            "response",
+            "⚠️ Empty response from Ollama."
+        )
 
     except Exception as e:
 
-        return f"❌ Ollama Error:\n\n{str(e)}"
+        return (
+            "❌ Ollama Error:\n\n"
+            f"{str(e)}"
+        )

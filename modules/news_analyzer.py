@@ -4,7 +4,7 @@ from utils.ollama_client import generate_ollama
 
 def analyze_news(
     article,
-    api_key,
+    api_key=None,
     language="English",
     provider="Gemini (Cloud)"
 ):
@@ -12,18 +12,31 @@ def analyze_news(
     if not article.strip():
         return "❌ Please enter a news article."
 
+    article = article[:5000]
+
     prompt = f"""
 Respond ONLY in {language}.
 
-You are a fact-checking assistant.
+You are a professional fact-checking assistant.
 
-Analyze this article and provide:
+Analyze the article and return the answer EXACTLY in this format.
 
-1. Main Claims
-2. Potential Bias
-3. Credibility Score (0-100)
-4. Missing Information
-5. Verdict
+# Main Claims
+- Claim 1
+- Claim 2
+
+# Potential Bias
+(Short explanation)
+
+# Credibility Score
+(Number between 0 and 100)
+
+# Missing Information
+- Point 1
+- Point 2
+
+# Verdict
+(Brief verdict)
 
 Article:
 
@@ -32,50 +45,21 @@ Article:
 
     try:
 
-        # LOCAL AI (OLLAMA)
         if provider == "Ollama (Local)":
             return generate_ollama(prompt)
 
-        # GEMINI CLOUD
         model = get_model(api_key)
 
         response = model.generate_content(prompt)
 
-        try:
-            if response.text:
-                return response.text
-        except Exception:
-            pass
+        if hasattr(response, "text") and response.text:
+            return response.text
 
-        if hasattr(response, "candidates") and response.candidates:
-
-            candidate = response.candidates[0]
-
-            if (
-                hasattr(candidate, "content")
-                and candidate.content
-                and hasattr(candidate.content, "parts")
-                and candidate.content.parts
-            ):
-
-                output = []
-
-                for part in candidate.content.parts:
-
-                    if hasattr(part, "text"):
-                        output.append(part.text)
-
-                if output:
-                    return "\n".join(output)
-
-        return (
-            "⚠️ Gemini returned an empty response.\n\n"
-            "Possible causes:\n"
-            "- Input was too large\n"
-            "- Gemini blocked the response\n"
-            "- Temporary API issue"
-        )
+        return "⚠️ Gemini returned an empty response."
 
     except Exception as e:
 
-        return f"❌ Error while analyzing article:\n\n{str(e)}"
+        return (
+            "❌ Error while analyzing article:\n\n"
+            f"{str(e)}"
+        )

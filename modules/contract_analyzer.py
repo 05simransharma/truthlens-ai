@@ -4,7 +4,7 @@ from utils.ollama_client import generate_ollama
 
 def analyze_contract(
     contract_text,
-    api_key,
+    api_key=None,
     language="English",
     provider="Gemini (Cloud)"
 ):
@@ -12,19 +12,35 @@ def analyze_contract(
     if not contract_text or not contract_text.strip():
         return "❌ No text could be extracted from the uploaded PDF."
 
+    contract_text = contract_text[:6000]
+
     prompt = f"""
 Respond ONLY in {language}.
 
-You are a legal risk analysis assistant.
+You are a legal contract risk analysis assistant.
 
-Analyze the contract and return:
+Analyze the contract and return the result EXACTLY in this format.
 
-1. Executive Summary
-2. Risk Score (0-100)
-3. High Risk Clauses
-4. Medium Risk Clauses
-5. User Obligations
-6. Final Recommendation
+# Executive Summary
+(2-3 sentences)
+
+# Risk Score
+(Number between 0 and 100)
+
+# High Risk Clauses
+- Item 1
+- Item 2
+
+# Medium Risk Clauses
+- Item 1
+- Item 2
+
+# User Obligations
+- Item 1
+- Item 2
+
+# Final Recommendation
+(Short recommendation)
 
 Contract:
 
@@ -33,50 +49,17 @@ Contract:
 
     try:
 
-        # LOCAL AI (OLLAMA)
         if provider == "Ollama (Local)":
             return generate_ollama(prompt)
 
-        # GEMINI CLOUD
         model = get_model(api_key)
 
         response = model.generate_content(prompt)
 
-        try:
-            if response.text:
-                return response.text
-        except Exception:
-            pass
+        if hasattr(response, "text") and response.text:
+            return response.text
 
-        if hasattr(response, "candidates") and response.candidates:
-
-            candidate = response.candidates[0]
-
-            if (
-                hasattr(candidate, "content")
-                and candidate.content
-                and hasattr(candidate.content, "parts")
-                and candidate.content.parts
-            ):
-
-                output = []
-
-                for part in candidate.content.parts:
-
-                    if hasattr(part, "text"):
-                        output.append(part.text)
-
-                if output:
-                    return "\n".join(output)
-
-        return (
-            "⚠️ Gemini returned an empty response.\n\n"
-            "Possible causes:\n"
-            "- Contract text extraction failed\n"
-            "- Input was too large\n"
-            "- Gemini blocked the response\n"
-            "- Temporary API issue"
-        )
+        return "⚠️ Gemini returned an empty response."
 
     except Exception as e:
 
