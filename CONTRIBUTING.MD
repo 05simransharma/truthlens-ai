@@ -47,7 +47,7 @@ Contributions are welcome in the following areas:
 
 * Additional AI model integrations
 * Local AI inference support
-* Fact-checking improvements
+* Custom AI workflows
 * Prompt engineering enhancements
 
 ### Multilingual Support

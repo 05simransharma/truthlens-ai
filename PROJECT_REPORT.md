@@ -48,7 +48,7 @@ TruthLens AI provides:
 
 * Executive summaries
 * Risk assessments
-* Risky clause identification
+* Missing clause detection
 * User obligations
 * Recommendations
 

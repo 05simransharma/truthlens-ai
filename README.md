@@ -236,7 +236,7 @@ Additional project documentation is available:
 * User API keys are never stored permanently.
 * Credentials remain under user control through BYOK.
 * Uploaded documents are processed temporarily.
-* No contract or news data is stored after analysis.
+* Encrypted storage where applicable
 
 ---
 
