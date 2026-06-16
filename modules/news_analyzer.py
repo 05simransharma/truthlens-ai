@@ -1,12 +1,16 @@
 from utils.gemini_client import get_model
+from utils.ollama_client import generate_ollama
 
 
-def analyze_news(article, api_key, language="English"):
+def analyze_news(
+    article,
+    api_key,
+    language="English",
+    provider="Gemini (Cloud)"
+):
 
     if not article.strip():
         return "❌ Please enter a news article."
-
-    model = get_model(api_key)
 
     prompt = f"""
 Respond ONLY in {language}.
@@ -27,6 +31,13 @@ Article:
 """
 
     try:
+
+        # LOCAL AI (OLLAMA)
+        if provider == "Ollama (Local)":
+            return generate_ollama(prompt)
+
+        # GEMINI CLOUD
+        model = get_model(api_key)
 
         response = model.generate_content(prompt)
 
@@ -66,4 +77,5 @@ Article:
         )
 
     except Exception as e:
+
         return f"❌ Error while analyzing article:\n\n{str(e)}"

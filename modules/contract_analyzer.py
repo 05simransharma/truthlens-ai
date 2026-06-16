@@ -1,10 +1,12 @@
 from utils.gemini_client import get_model
+from utils.ollama_client import generate_ollama
 
 
 def analyze_contract(
     contract_text,
     api_key,
-    language="English"
+    language="English",
+    provider="Gemini (Cloud)"
 ):
 
     if not contract_text or not contract_text.strip():
@@ -31,15 +33,18 @@ Contract:
 
     try:
 
+        # LOCAL AI (OLLAMA)
+        if provider == "Ollama (Local)":
+            return generate_ollama(prompt)
+
+        # GEMINI CLOUD
         model = get_model(api_key)
 
         response = model.generate_content(prompt)
 
         try:
-
             if response.text:
                 return response.text
-
         except Exception:
             pass
 

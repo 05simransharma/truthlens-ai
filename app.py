@@ -14,38 +14,66 @@ st.set_page_config(
 # ==================================================
 # SIDEBAR
 # ==================================================
+
 with st.sidebar:
 
     language = st.selectbox(
         "🌐 Language",
-        ["English", "Hindi", "Telugu"]
+        ["English", "Hindi", "Telugu"],
+        key="language_selector"
     )
 
     t = translations[language]
 
     st.title(t["title"])
 
-    st.caption("AI-powered risk & credibility analysis")
-
-    st.markdown("---")
-
-    st.header(f"🔑 {t["api_configuration"]}")
-
-    api_key = st.text_input(
-    t["api_key"],
-    type="password"
+    st.caption(
+        "AI-powered risk & credibility analysis"
     )
 
+    st.markdown("---")
+
+    provider = st.selectbox(
+        "🤖 AI Provider",
+        [
+            "Gemini (Cloud)",
+            "Ollama (Local)"
+        ],
+        key="provider"
+    )
+
+    if provider == "Gemini (Cloud)":
+
+        st.header(f'🔑 {t["api_configuration"]}')
+
+        api_key = st.text_input(
+            t["api_key"],
+            type="password"
+        )
+
+    else:
+
+        api_key = ""
+
+        st.success(
+            "Using local Ollama model (Qwen 2.5)"
+        )
 
     st.markdown("---")
 
-    st.markdown(f"### {t['features']}")
+    st.markdown(
+        f"### {t['features']}"
+    )
 
-    st.markdown(t["feature_list"])
+    st.markdown(
+        t["feature_list"]
+    )
 
     st.markdown("---")
 
-    st.info(t["sidebar_info"])
+    st.info(
+        t["sidebar_info"]
+    )
 
 # ==================================================
 # CUSTOM STYLING
@@ -102,7 +130,9 @@ tab1, tab2 = st.tabs(
 
 with tab1:
 
-    st.subheader(t["contract_header"])
+    st.subheader(
+        t["contract_header"]
+    )
 
     uploaded_pdf = st.file_uploader(
         t["upload_pdf"],
@@ -112,14 +142,19 @@ with tab1:
 
     if uploaded_pdf:
 
-        st.success("PDF uploaded successfully.")
+        st.success(
+            "PDF uploaded successfully."
+        )
 
         if st.button(
             t["analyze_contract"],
             use_container_width=True
         ):
 
-            if not api_key:
+            if (
+                provider == "Gemini (Cloud)"
+                and not api_key
+            ):
 
                 st.warning(
                     "Please enter your Gemini API Key in the sidebar."
@@ -127,21 +162,28 @@ with tab1:
 
             else:
 
-                with st.spinner("Analyzing contract..."):
+                with st.spinner(
+                    "Analyzing contract..."
+                ):
 
-                    contract_text = extract_text(uploaded_pdf)
+                    contract_text = extract_text(
+                        uploaded_pdf
+                    )
 
                     result = analyze_contract(
                         contract_text,
                         api_key,
-                        language
+                        language,
+                        provider
                     )
 
                     st.markdown(
                         t["analysis_report"]
                     )
 
-                    st.markdown(result)
+                    st.markdown(
+                        result
+                    )
 
 # ==================================================
 # NEWS ANALYZER
@@ -149,7 +191,9 @@ with tab1:
 
 with tab2:
 
-    st.subheader(t["news_header"])
+    st.subheader(
+        t["news_header"]
+    )
 
     article = st.text_area(
         "Paste News Article",
@@ -168,7 +212,10 @@ with tab2:
                 "Please enter an article."
             )
 
-        elif not api_key:
+        elif (
+            provider == "Gemini (Cloud)"
+            and not api_key
+        ):
 
             st.warning(
                 "Please enter your Gemini API Key in the sidebar."
@@ -176,19 +223,24 @@ with tab2:
 
         else:
 
-            with st.spinner("Analyzing article..."):
+            with st.spinner(
+                "Analyzing article..."
+            ):
 
                 result = analyze_news(
                     article,
                     api_key,
-                    language
+                    language,
+                    provider
                 )
 
                 st.markdown(
                     t["credibility_report"]
                 )
 
-                st.markdown(result)
+                st.markdown(
+                    result
+                )
 
 # ==================================================
 # FOOTER
@@ -197,5 +249,5 @@ with tab2:
 st.divider()
 
 st.caption(
-    "TruthLens AI • Hackathon Prototype • Powered by Gemini • BYOK Enabled • Multilingual Support"
+    "TruthLens AI • Powered by Gemini & Ollama • BYOK Enabled • Multilingual Support"
 )
