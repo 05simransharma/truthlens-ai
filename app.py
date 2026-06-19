@@ -117,10 +117,11 @@ st.markdown(
 # TABS
 # ==================================================
 
-tab1, tab2 = st.tabs(
+tab1, tab2, tab3 = st.tabs(
     [
         t["contract_tab"],
-        t["news_tab"]
+        t["news_tab"],
+        t["document_q&a"]
     ]
 )
 
@@ -241,6 +242,46 @@ with tab2:
                 st.markdown(
                     result
                 )
+
+# Document Q&A
+
+with tab3:
+
+    uploaded_pdf = st.file_uploader(
+        "Upload Document",
+        type=["pdf"],
+        key="docqa"
+    )
+
+    question = st.text_input(
+        "Ask a question"
+    )
+
+    if uploaded_pdf:
+
+        text = extract_document(
+            uploaded_pdf
+        )
+
+        chunks = chunk_document(
+            text
+        )
+
+        index, chunks = create_vector_store(
+            chunks
+        )
+
+        if st.button(
+            "Ask Document"
+        ):
+
+            answer = ask_document(
+                question,
+                index,
+                chunks
+            )
+
+            st.markdown(answer)
 
 # ==================================================
 # FOOTER
