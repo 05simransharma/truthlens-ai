@@ -1,22 +1,14 @@
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
-import fitz  # PyMuPDF
+
+from utils.document_loader import extract_document
 from utils.ollama_client import generate_ollama
 
 embedding_model = SentenceTransformer(
     "all-MiniLM-L6-v2"
 )
-def extract_document(pdf_path):
 
-    doc = fitz.open(pdf_path)
-
-    text = ""
-
-    for page in doc:
-        text += page.get_text()
-
-    return text
 def chunk_document(
     text,
     chunk_size=500

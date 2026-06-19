@@ -1,5 +1,5 @@
 import streamlit as st
-
+from modules.document_qa import (extract_document, chunk_document, create_vector_store, ask_document )
 from utils.pdf_loader import extract_text
 from modules.contract_analyzer import analyze_contract
 from modules.news_analyzer import analyze_news
@@ -121,7 +121,7 @@ tab1, tab2, tab3 = st.tabs(
     [
         t["contract_tab"],
         t["news_tab"],
-        t["document_q&a"]
+        t["document_qa"]
     ]
 )
 
@@ -259,19 +259,16 @@ with tab3:
 
     if uploaded_pdf:
 
-        text = extract_document(
-            uploaded_pdf
-        )
-
-        chunks = chunk_document(
+       text = extract_document(
+    uploaded_pdf
+    )
+       chunks = chunk_document(
             text
         )
-
-        index, chunks = create_vector_store(
+       index, chunks = create_vector_store(
             chunks
         )
-
-        if st.button(
+       if st.button(
             "Ask Document"
         ):
 

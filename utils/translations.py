@@ -11,7 +11,7 @@ translations = {
         "news_header": "Analyze News Credibility",
 
         "upload_pdf": "Upload a PDF Contract",
-
+        "document_qa": "📚 Document Q&A",
         "analyze_contract": "🔍 Analyze Contract",
         "analyze_news": "📰 Analyze News",
 
@@ -63,7 +63,7 @@ translations = {
 
         "analysis_report": "## 📋 विश्लेषण रिपोर्ट",
         "credibility_report": "## 📊 विश्वसनीयता रिपोर्ट",
-
+        "document_qa": "📚 दस्तावेज़ प्रश्नोत्तर",
         "title": "ट्रुथलेंस एआई",
         "sidebar_subtitle": "एआई आधारित जोखिम और विश्वसनीयता विश्लेषण",
         "api_configuration": "एपीआई सेटिंग्स",
@@ -113,8 +113,7 @@ translations = {
         "title": "ట్రూత్‌లెన్స్ AI",
         "sidebar_subtitle": "AI ఆధారిత ప్రమాద మరియు విశ్వసనీయత విశ్లేషణ",
         "api_configuration": "API సెట్టింగ్స్",
-
-        "ai_settings": "AI సెట్టింగ్స్",
+        "document_qa": "📚 డాక్యుమెంట్ ప్రశ్నోత్తరాలు",        "ai_settings": "AI సెట్టింగ్స్",
         "api_key": "జెమినీ API కీ (BYOK)",
         "language": "భాష",
         "features": "ఫీచర్లు",
